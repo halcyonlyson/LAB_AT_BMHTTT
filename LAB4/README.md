@@ -32,5 +32,17 @@
 
 ---
 
+### 4. CÁC TÌNH HUỐNG ĐÃ THỰC HIỆN VÀ KẾT QUẢ
 
+| STT | Kịch bản / Tình huống thực hiện | Mục tiêu / Câu lệnh chính | Kết quả |
+| :---: | :--- | :--- | :---: |
+| 1 | Xác thực IP & kiểm tra kết nối | `ip -br addr`, `ifconfig`, `ping -c 4 <Target_IP>` | **PASS** |
+| 2 | Host Discovery (Rà soát máy đang sống) | `sudo nmap -sn 192.168.56.0/24` | **PASS** |
+| 3 | Khảo sát cổng TCP (-sT vs -sS) | `nmap -sT <Target_IP>` và `sudo nmap -sS <Target_IP>` | **PASS** |
+| 4 | Kỹ thuật quét nâng cao (FIN, Xmas, NULL, ACK) | `sudo nmap -sF / -sX / -sN / -sA <Target_IP>` | **PASS** |
+| 5 | Quét cổng UDP có kiểm soát | `sudo nmap -sU --top-ports 20 <Target_IP>` | **PASS** |
+| 6 | Nhận diện phiên bản dịch vụ (-sV) & OS (-O, -A) | `sudo nmap -sV -O -A <Target_IP>` | **PASS** |
+| 7 | Kiểm tra an toàn SMB bằng NSE Script | `--script smb-os-discovery`, `smb-vuln-ms17-010` | **PASS** |
+| 8 | Xuất hồ sơ bằng chứng (.txt, .xml, .html, grepable) | `-oN`, `-oX`, `-oG`, `xsltproc` | **PASS** |
+| 9 | Đánh giá trước/sau phòng thủ (Hardening) | So sánh kết quả quét trước và sau khi đổi cấu hình | **PASS** |
 
