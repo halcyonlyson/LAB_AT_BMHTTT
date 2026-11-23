@@ -15,7 +15,7 @@ Bài thực hành xây dựng chương trình minh họa mật mã khóa công k
 - Windows 11 (64-bit)
 - OpenJDK Temurin 17.0.16 (đã kiểm tra)
 - Apache Maven 3.9.13 (đã kiểm tra)
-- Apache NetBeans IDE và Java Swing
+- Apache NetBeans IDE 31 và Java Swing
 - Java Cryptography Architecture / Java Cryptography Extension (RSA, EC, ECDH, AES-GCM, ECDSA)
 - Microsoft SQL Server và SQL Server Management Studio (SSMS)
 - Microsoft JDBC Driver `mssql-jdbc` phiên bản `12.8.1.jre11` (theo `pom.xml` của tài liệu)
@@ -55,3 +55,21 @@ Project Maven: `LAB3_MaHoaKhoaCongKhai`; package: `week_03`; lớp chạy chính
 **Bảo mật:** Không đưa mật khẩu SQL Server hoặc khóa riêng lên GitHub. Không chụp màn hình có thông tin bí mật. Khóa lưu bằng Save Keys chỉ dùng làm dữ liệu thử nghiệm và phải được giữ riêng, không commit.
 
 ## 5. Kết quả thực hành và kiểm thử
+
+
+| Chức năng | Nội dung kiểm thử | Kết quả ghi nhận |
+|---|---|---|
+| Môi trường | `java -version`, `mvn -version` | **PASS** |
+| Project và lớp dùng chung | Tạo `CryptoSupport`, `FileTextIO`; Clean and Build | **PASS** |
+| Kết nối SQL Server | `frm_KetNoiSQL` → Test Connection | **PASS** |
+| RSA Console 3072 bit | Mã hóa/giải mã `HELLO RSA` | **PASS** |
+| RSA Console 2048 bit | Mã hóa/giải mã `HELLO RSA`; thử đầu vào vượt 190 byte | **PASS** |
+| RSA Swing | Tạo khóa, Encrypt/Decrypt `HELLO RSA`, mã hóa hai lần | **PASS** |
+| ECC | Encrypt/Decrypt `HELLO ECC`; Save/Load Keys | **PASS** |
+| ECC – khóa sai | Dùng cặp khóa mới để giải mã bản mã cũ | **PASS** |
+| RSA + AES | Văn bản > 1.000 ký tự; sửa 1 ký tự bản mã | **PASS** |
+| ECDSA | `THONG DIEP A` → VALID; `THONG DIEP B` → INVALID; khóa khác | **PASS** |
+| ECDSA – chỉ khóa công khai | Load Public Key → Verify VALID; Sign bị từ chối | **PASS** |
+| Menu và lịch sử | Run Project (`F6`); thao tác từ Menu; xem `frm_LichSu` | **PASS** |
+| SSMS | Truy vấn lịch sử và thống kê `dbo.History` | **PASS** |
+
